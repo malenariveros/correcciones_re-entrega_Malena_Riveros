@@ -1,8 +1,9 @@
+ESSSSSTO
 
-DROP DATABASE if exists restaurante; -- en caso de que la base de datos exista, la elimina
-CREATE DATABASE restaurante; -- crea la base de datos 
+DROP DATABASE if exists copia_restaurante; -- en caso de que la base de datos exista, la elimina
+CREATE DATABASE copia_restaurante; -- crea la base de datos 
 
-USE restaurante; -- selecciona la base de datos con la que vamos a trabajar
+USE copia_restaurante; -- selecciona la base de datos con la que vamos a trabajar
 
 -- creamos las tablas de la base de datos restaurante
 
@@ -168,10 +169,6 @@ ADD cantidad_bebidas INT;
 ALTER TABLE detalle_comandas
 ADD cantidad_postres INT;
 
-<<<<<<< HEAD
-=======
-DESCRIBE detalle_comandas;
->>>>>>> db72259acbfc7b36236e82a167768894ceb36e53
 
 
 CREATE TABLE facturas_clientes (
@@ -317,37 +314,6 @@ CREATE TABLE ventas (
     fecha DATE NOT NULL
 );
 
-<<<<<<< HEAD
-
-=======
->>>>>>> db72259acbfc7b36236e82a167768894ceb36e53
-CREATE TABLE detalle_ventas (
-    id_detalle INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_ventas INT NOT NULL,
-    id_platos INT,
-    id_bebidas INT,
-    id_postres INT,
-    id_menu INT,
-    cantidad INT NOT NULL,
-    FOREIGN KEY (id_ventas) REFERENCES ventas(id_ventas),
-    FOREIGN KEY (id_platos) REFERENCES platos(id_platos),
-    FOREIGN KEY (id_bebidas) REFERENCES bebidas(id_bebidas),
-    FOREIGN KEY (id_postres) REFERENCES postres(id_postres),
-    FOREIGN KEY (id_menu) REFERENCES menu(id_menu)
-);
-
-<<<<<<< HEAD
-ALTER TABLE detalle_ventas
-DROP cantidad;
-
-ALTER TABLE detalle_ventas
-ADD CONSTRAINT fk_detalle_comandas_detalle_ventas_platos FOREIGN KEY (id_platos) REFERENCES detalle_comandas(id_platos),
-ADD CONSTRAINT fk_detalle_comandas_detalle_ventas_bebidas FOREIGN KEY (id_bebidas) REFERENCES detalle_comandas(id_bebidas),
-ADD CONSTRAINT fk_detalle_comandas_detalle_ventas_postres FOREIGN KEY (id_postres) REFERENCES detalle_comandas(id_postres),
-ADD CONSTRAINT fk_detalle_comandas_detalle_ventas_menu FOREIGN KEY (id_menu) REFERENCES detalle_comandas(id_menu);
-
--- Eliminar la tabla detalle_ventas si existe
-DROP TABLE IF EXISTS detalle_ventas;
 
 -- Crear la tabla detalle_ventas desde cero con todas las restricciones
 CREATE TABLE detalle_ventas (
@@ -371,43 +337,49 @@ CREATE TABLE detalle_ventas (
     CONSTRAINT fk_detalle_comandas_detalle_ventas_postres FOREIGN KEY (id_postres) REFERENCES detalle_comandas(id_postres),
     CONSTRAINT fk_detalle_comandas_detalle_ventas_menu FOREIGN KEY (id_menu) REFERENCES detalle_comandas(id_menu)
 );
-=======
 
 
+
+
+
+-- ----------------------- INSERT DE DATOS --------------------- --
+-- ------------------------------------------------------------- --
+       
 -- inserción de datos para las tablas platos y postres.
 
-INSERT INTO platos (nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
-VALUES ('Gazpacho', 'Sopa fría de tomates de estación con pesto albahaca.', 'entrada', '00:05:00', '1', '9.99');
+INSERT INTO platos (id_platos, nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
+VALUES ('1', 'Gazpacho', 'Sopa fría de tomates de estación con pesto albahaca.', 'entrada', '00:05:00', '1', '9.99');
 
-INSERT INTO platos (nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
-VALUES ('Langostinos Jumbo', 'Langostinos en salsa vasca, cítrica a base de mariscos.', 'entrada', '00:10:00', '1', '14.99');
+INSERT INTO platos (id_platos, nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
+VALUES ('2', 'Langostinos Jumbo', 'Langostinos en salsa vasca, cítrica a base de mariscos.', 'entrada', '00:10:00', '1', '14.99');
 
-INSERT INTO platos (nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
-VALUES ('Taco filet con salsa de vino', 'Acompañado de verduras de estación, con salsa de vino y frutos rojos.', 'principal', '00:15:00', '1', '19.99');
+INSERT INTO platos (id_platos, nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
+VALUES ('3', 'Taco filet con salsa de vino', 'Acompañado de verduras de estación, con salsa de vino y frutos rojos.', 'principal', '00:15:00', '1', '19.99');
 
-INSERT INTO platos (nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
-VALUES ('Rack cordero con espuma de berenjena', 'En su fondo de cocción, acompañado de liso de berenjena', 'principal', '00:15:00', '1', 19.99);
+INSERT INTO platos (id_platos, nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
+VALUES ('4', 'Rack cordero con espuma de berenjena', 'En su fondo de cocción, acompañado de liso de berenjena', 'principal', '00:15:00', '1', 19.99);
 
-INSERT INTO platos (nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
-VALUES ('Rotolo de espinaca', 'Pasta rellena de espinaca, con salsa de queso azul.', 'principal', '00:15:00', '1', '17.99');
+INSERT INTO platos (id_platos, nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
+VALUES ('5','Rotolo de espinaca', 'Pasta rellena de espinaca, con salsa de queso azul.', 'principal', '00:15:00', '1', '17.99');
 
-INSERT INTO postres (nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
-VALUES ('Panqueques frambeados', 'Rellenos de dulce de leche.', 'postre', '00:05:00', '1', '7.99');
+INSERT INTO postres (id_postres, nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
+VALUES ('1', 'Panqueques frambeados', 'Rellenos de dulce de leche.', 'postre', '00:05:00', '1', '7.99');
 
-INSERT INTO postres (nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
-VALUES ('Nemesis', 'Lingote de chocolate semi amargo, con salsa de frutillas y frutos secos crocantes.', 'postre', '00:05:00', '1', '8.99');
+INSERT INTO postres (id_postres, nombre, descripcion, categoria, tiempo_preparacion, disponible, precio)
+VALUES ('2', 'Nemesis', 'Lingote de chocolate semi amargo, con salsa de frutillas y frutos secos crocantes.', 'postre', '00:05:00', '1', '8.99');
 
-INSERT INTO bebidas (nombre, descripcion, categoria, disponible, precio)
-VALUES ('Refresco de limón', 'Refresco natural de limón.', 'Bebida', 1, 2.50),
-       ('Café Americano', 'Café negro americano.', 'Bebida', 1, 1.75),
-       ('Jugo de naranja', 'Jugo natural de naranja.', 'Bebida', 1, 3.00),
-       ('Agua mineral', 'Agua mineral sin gas.', 'Bebida', 1, 1.00),
-       ('Vino tinto', 'Vino tinto de la casa.', 'Bebida', 1, 5.00);
+INSERT INTO bebidas (id_bebidas, nombre, descripcion, categoria, disponible, precio)
+VALUES ('1', 'Refresco de limón', 'Refresco natural de limón.', 'Bebida', 1, 2.50),
+       ('2', 'Café Americano', 'Café negro americano.', 'Bebida', 1, 1.75),
+       ('3', 'Jugo de naranja', 'Jugo natural de naranja.', 'Bebida', 1, 3.00),
+       ('4', 'Agua mineral', 'Agua mineral sin gas.', 'Bebida', 1, 1.00),
+       ('5', 'Vino tinto', 'Vino tinto de la casa.', 'Bebida', 1, 5.00);
 
 
--- Insert de datos en la tabla clientes.
+-- Insert de clientes (30 más añadidos)
+
 INSERT INTO clientes (nombre, apellido, telefono, email, fecha_nacimiento)
-VALUES ('María', 'Gómez', '987654321', 'maria@example.com','1990-03-15'),
+VALUES ('María', 'Gómez', '987654321', 'maria@example.com', '1990-03-15'),
        ('Carlos', 'López', '564738291', 'carlos@example.com', '1985-07-21'),
        ('Ana', 'Martínez', '654987321', 'ana@example.com', '1988-11-10'),
        ('Pedro', 'Díaz', '789456123', 'pedro@example.com', '1979-05-03'),
@@ -421,7 +393,39 @@ VALUES ('María', 'Gómez', '987654321', 'maria@example.com','1990-03-15'),
        ('Gabriel', 'Díaz', '852963741', 'gabriel@example.com', '1983-09-07'),
        ('Alejandra', 'Torres', '369852147', 'alejandra@example.com', '1989-02-14'),
        ('Daniel', 'Sánchez', '258147369', 'daniel@example.com', '1978-07-23'),
-       ('Carmen', 'Ruiz', '741852963', 'carmen@example.com', '1996-03-29');
+       ('Carmen', 'Ruiz', '741852963', 'carmen@example.com', '1996-03-29'),
+       ('Pablo', 'Morales', '123789456', 'pablo@example.com', '1992-01-15'),
+       ('Claudia', 'Hernández', '456123789', 'claudia@example.com', '1984-04-17'),
+       ('Jorge', 'Ramírez', '789456321', 'jorge@example.com', '1977-08-22'),
+       ('Isabel', 'Vega', '321987654', 'isabel@example.com', '1994-06-11'),
+       ('Fernando', 'Castro', '654789123', 'fernando@example.com', '1980-12-05'),
+       ('Natalia', 'Romero', '987321654', 'natalia@example.com', '1986-11-21'),
+       ('Raúl', 'Ortega', '789123654', 'raul@example.com', '1989-03-07'),
+       ('Patricia', 'Jiménez', '456789654', 'patricia@example.com', '1993-07-29'),
+       ('Sergio', 'Mendoza', '123456321', 'sergio@example.com', '1981-10-14'),
+       ('Verónica', 'Silva', '654321123', 'veronica@example.com', '1976-05-09'),
+       ('Martín', 'Rojas', '789654321', 'martin@example.com', '1990-09-19'),
+       ('Liliana', 'Flores', '321654321', 'liliana@example.com', '1985-11-03'),
+       ('Héctor', 'Molina', '456123456', 'hector@example.com', '1978-04-25'),
+       ('Rosa', 'Rivera', '789321123', 'rosa@example.com', '1991-12-07'),
+       ('Andrés', 'Acosta', '987654654', 'andres@example.com', '1982-08-15'),
+       ('Monica', 'Salas', '321987321', 'monica@example.com', '1994-03-10'),
+       ('Iván', 'Reyes', '654789654', 'ivan@example.com', '1983-10-30'),
+       ('Lucía', 'Navarro', '123654123', 'lucia@example.com', '1988-06-21'),
+       ('Alberto', 'Pineda', '789456789', 'alberto@example.com', '1975-09-28'),
+       ('Valeria', 'Escobar', '456789987', 'valeria@example.com', '1992-07-13'),
+       ('Rodrigo', 'Ibarra', '321654987', 'rodrigo@example.com', '1979-02-27'),
+       ('Estela', 'Villalobos', '654321789', 'estela@example.com', '1987-04-01'),
+       ('Javier', 'Soto', '987123456', 'javier@example.com', '1990-10-20'),
+       ('Marisol', 'Durán', '456123321', 'marisol@example.com', '1985-01-31'),
+       ('Emilio', 'Carrillo', '123789123', 'emilio@example.com', '1993-08-24'),
+       ('Samantha', 'Palacios', '789654987', 'samantha@example.com', '1981-06-02'),
+       ('Oscar', 'Meza', '321789654', 'oscar@example.com', '1994-12-15'),
+       ('Victoria', 'Peralta', '654987789', 'victoria@example.com', '1982-11-30'),
+       ('Federico', 'Bravo', '987456321', 'federico@example.com', '1988-05-08'),
+       ('Antonia', 'Gallegos', '123654789', 'antonia@example.com', '1977-07-12'),
+       ('Enrique', 'Cabrera', '456987123', 'enrique@example.com', '1991-02-19'),
+       ('Paula', 'Santos', '789321789', 'paula@example.com', '1983-03-22');
             
            
 
@@ -442,64 +446,102 @@ VALUES ('1', '2', 'libre', 'salón'),
 
 
  
--- Insert de datos en la tabla reservas.
-INSERT INTO reservas (fecha, cantidad_pax, hora, id_mesas)
-VALUES 	('2024-05-17', 2, '12:30:00','1'),
-		('2024-05-20', 3, '11:30:00', '5'),
-		('2024-05-25', 6, '08:00:00', '9'),
-		('2024-06-01', 4, '08:30:00', '8'),
-		('2024-06-05', 5, '12:30:00', '11'),
-		('2024-06-10', 2, '10:45:00', '3'),
-		('2024-06-15', 3, '13:15:00', '6'),
-		('2024-06-20', 4, '14:30:00', '4'),
-		('2024-06-25', 2, '16:00:00', '2'),
-		('2024-06-30', 4, '17:45:00', '7'),
-		('2024-07-05', 6, '09:30:00', '9'),
-		('2024-07-10', 3, '11:00:00', '5'),
-		('2024-07-15', 5, '18:30:00', '1'),
-		('2024-07-20', 2, '20:15:00', '8'),
-		('2024-07-25', 4, '08:30:00', '3');
->>>>>>> db72259acbfc7b36236e82a167768894ceb36e53
+INSERT INTO reservas (fecha, cantidad_pax, hora, id_mesas, id_clientes)
+VALUES  ('2024-05-17', 2, '12:30:00', 1, 17),
+        ('2024-05-20', 3, '11:30:00', 5, 8),
+        ('2024-05-25', 6, '08:00:00', 9, 24),
+        ('2024-06-01', 4, '08:30:00', 8, 3),
+        ('2024-06-05', 5, '12:30:00', 11, 27),
+        ('2024-06-10', 2, '10:45:00', 3, 10),
+        ('2024-06-15', 3, '13:15:00', 6, 12),
+        ('2024-06-20', 4, '14:30:00', 4, 22),
+        ('2024-06-25', 2, '16:00:00', 2, 29),
+        ('2024-06-30', 4, '17:45:00', 7, 18),
+        ('2024-07-05', 6, '09:30:00', 9, 31),
+        ('2024-07-10', 3, '11:00:00', 5, 1),
+        ('2024-07-15', 5, '18:30:00', 1, 5),
+        ('2024-07-20', 2, '20:15:00', 8, 15),
+        ('2024-07-25', 4, '08:30:00', 3, 6),
+        ('2024-03-01', 2, '12:00:00', 1, 9),
+        ('2024-03-02', 3, '13:30:00', 5, 19),
+        ('2024-03-03', 4, '15:00:00', 7, 4),
+        ('2024-03-04', 2, '11:00:00', 2, 7),
+        ('2024-03-05', 5, '19:00:00', 6, 13),
+        ('2024-03-06', 3, '10:30:00', 4, 21),
+        ('2024-03-07', 4, '17:00:00', 3, 26),
+        ('2024-03-08', 2, '09:00:00', 1, 11),
+        ('2024-03-08', 4, '10:00:00', 2, 14),
+        ('2024-03-08', 6, '11:00:00', 3, 25),
+        ('2024-03-08', 2, '12:00:00', 4, 28),
+        ('2024-03-08', 5, '13:00:00', 5, 2),
+        ('2024-03-08', 4, '14:00:00', 6, 20),
+        ('2024-03-08', 3, '15:00:00', 7, 30),
+        ('2024-03-08', 6, '16:00:00', 8, 23),
+        ('2024-03-08', 2, '17:00:00', 9, 16),
+        ('2024-03-08', 4, '18:00:00', 10, 32),
+        ('2024-03-08', 5, '19:00:00', 11, 33),
+        ('2024-03-09', 4, '12:30:00', 4, 34),
+        ('2024-03-10', 3, '13:00:00', 6, 35),
+        ('2024-03-11', 2, '14:30:00', 8, 36),
+        ('2024-03-12', 5, '15:00:00', 5, 37),
+        ('2024-03-13', 4, '10:00:00', 9, 38),
+        ('2024-03-14', 6, '18:30:00', 3, 39),
+        ('2024-03-15', 3, '12:00:00', 7, 40),
+        ('2024-03-16', 2, '11:30:00', 10, 41),
+        ('2024-03-17', 4, '19:30:00', 2, 42),
+        ('2024-03-18', 5, '20:00:00', 6, 43);
 
 
 
 
-<<<<<<< HEAD
--- creamos una vista que nos permita ver las resvar del día, hechas por los clientes.
 
-DROP VIEW IF EXISTS vista_ventas_diarias;
-CREATE OR REPLACE VIEW vista_ventas_diarias AS
-SELECT 
-    fecha, 
-    COUNT(id_ventas) AS total_ventas
-FROM 
-    ventas
-GROUP BY 
-    fecha
-ORDER BY 
-    fecha;
-
-
-SELECT * FROM vista_ventas_diarias;
-=======
 
 -- Insert de datos en la tabla comandas.
-INSERT INTO comandas(id_comandas, hora, fecha, id_mesas)
-VALUES	('15','12:30:00', '2024-05-17', '1'),
-		('20','11:30:00', '2024-05-20', '5'),
-        ('35','08:00:00', '2024-05-25', '9'),
-        ('40','08:30:00', '2024-06-01', '8'),
-        ('52','12:30:00', '2024-06-05', '1'),
-		('60', '10:45:00', '2024-06-10', '3'),
-		('72', '13:15:00', '2024-06-15', '6'),
-		('83', '14:30:00', '2024-06-20', '4'),
-		('94', '16:00:00', '2024-06-25', '2'),
-		('105', '17:45:00', '2024-06-30', '7'),
-		('116', '09:30:00', '2024-07-05', '9'),
-		('127', '11:00:00', '2024-07-10', '5'),
-		('138', '18:30:00', '2024-07-15', '1'),
-		('149', '20:15:00', '2024-07-20', '8'),
-		('160', '08:30:00', '2024-07-25', '3');
+INSERT INTO comandas(id_comandas, hora, fecha, id_clientes, id_mesas)
+VALUES
+    ('15', '12:30:00', '2024-05-17', 17, 1),
+    ('20', '11:30:00', '2024-05-20', 8, 5),
+    ('35', '08:00:00', '2024-05-25', 24, 9),
+    ('40', '08:30:00', '2024-06-01', 3, 8),
+    ('52', '12:30:00', '2024-06-05', 27, 11),
+    ('60', '10:45:00', '2024-06-10', 10, 3),
+    ('72', '13:15:00', '2024-06-15', 12, 6),
+    ('83', '14:30:00', '2024-06-20', 22, 4),
+    ('94', '16:00:00', '2024-06-25', 29, 2),
+    ('105', '17:45:00', '2024-06-30', 18, 7),
+    ('116', '09:30:00', '2024-07-05', 31, 9),
+    ('127', '11:00:00', '2024-07-10', 1, 5),
+    ('138', '18:30:00', '2024-07-15', 5, 1),
+    ('149', '20:15:00', '2024-07-20', 15, 8),
+    ('160', '08:30:00', '2024-07-25', 6, 3),
+    ('170', '12:00:00', '2024-03-01', 9, 1),
+    ('171', '13:30:00', '2024-03-02', 19, 5),
+    ('172', '15:00:00', '2024-03-03', 4, 7),
+    ('173', '11:00:00', '2024-03-04', 7, 2),
+    ('174', '19:00:00', '2024-03-05', 13, 6),
+    ('175', '10:30:00', '2024-03-06', 21, 4),
+    ('176', '17:00:00', '2024-03-07', 26, 3),
+    ('177', '09:00:00', '2024-03-08', 11, 1),
+    ('178', '10:00:00', '2024-03-08', 14, 2),
+    ('179', '11:00:00', '2024-03-08', 25, 3),
+    ('180', '12:00:00', '2024-03-08', 28, 4),
+    ('181', '13:00:00', '2024-03-08', 2, 5),
+    ('182', '14:00:00', '2024-03-08', 20, 6),
+    ('183', '15:00:00', '2024-03-08', 30, 7),
+    ('184', '16:00:00', '2024-03-08', 23, 8),
+    ('185', '17:00:00', '2024-03-08', 16, 9),
+    ('186', '18:00:00', '2024-03-08', 32, 10),
+    ('187', '19:00:00', '2024-03-08', 33, 11),
+    ('188', '12:30:00', '2024-03-09', 34, 4),
+    ('189', '13:00:00', '2024-03-10', 35, 6),
+    ('190', '14:30:00', '2024-03-11', 36, 8),
+    ('191', '15:00:00', '2024-03-12', 37, 5),
+    ('192', '10:00:00', '2024-03-13', 38, 9),
+    ('193', '18:30:00', '2024-03-14', 39, 3),
+    ('194', '12:00:00', '2024-03-15', 40, 7),
+    ('195', '11:30:00', '2024-03-16', 41, 10),
+    ('196', '19:30:00', '2024-03-17', 42, 2),
+    ('197', '20:00:00', '2024-03-18', 43, 6);
 
 
 
@@ -509,103 +551,198 @@ VALUES	(1, 'menu de 3 pasos', 'entrada: gazpacho. principal: taco filet con sals
 		(2, 'menu de 5 pasos', '1: ostras. 2: lasngostinos. 3: rotolo. 4: rack cordero. 5: panqueques.', '60.00', 'menu de pasos');
 
 
+-- Insert de los resgistros de consumo de platos, bebidas, postres y menú de la tabla detalle_comandas.
+INSERT INTO detalle_comandas(id_comandas, id_platos, id_bebidas, id_menu, id_postres, cantidad_platos, cantidad_bebidas, cantidad_postres, observaciones) VALUES
+    (15, 1, 1, 2, 1, 2, 2, 1, 'Sin sal'),
+    (20, 2, 2, 1, 2, 1, 1, 1, 'Cocido'),
+    (35, 3, 3, 1, 2, 1, 1, 1, 'Punto medio'),
+    (40, 4, 4, 1, 1, 2, 2, 1, 'Opción vegana'),
+    (52, 5, 5, 1, 1, 1, 1, 2, 'Sin gluten'),
+    (60, 1, 2, 1, 2, 2, 2, 1, 'Sin lácteos'),
+    (72, 2, 3, 1, 1, 1, 1, 2, 'Extra picante'),
+    (83, 3, 4, 1, 2, 2, 2, 1, 'Con ajo'),
+    (94, 4, 5, 1, 1, 1, 1, 1, 'Sin cebolla'),
+    (105, 5, 1, 1, 2, 1, 2, 2, 'Ensalada'),
+    (116, 1, 2, 2, 1, 2, 1, 1, 'Extra queso'),
+    (127, 2, 3, 1, 2, 1, 1, 2, 'Sin condimentos'),
+    (138, 3, 4, 1, 1, 1, 1, 1, 'Para compartir'),
+    (149, 4, 5, 1, 2, 2, 2, 2, 'Sin frutos secos'),
+    (160, 5, 1, 1, 1, 1, 1, 1, 'Sin sal'),
+    (170, 1, 2, 1, 2, 2, 2, 2, 'sin observaciones'),
+    (171, 2, 3, 1, 1, 1, 1, 1, 'sin observaciones'),
+    (172, 3, 4, 1, 2, 1, 2, 2, 'sin observaciones'),
+    (173, 4, 5, 1, 1, 2, 1, 1, 'sin observaciones'),
+    (174, 5, 1, 1, 2, 1, 1, 2, 'sin observaciones'),
+    (175, 1, 2, 1, 1, 1, 1, 1, 'sin observaciones'),
+    (176, 2, 3, 1, 2, 2, 2, 1, 'sin observaciones'),
+    (177, 3, 4, 1, 1, 1, 1, 1, 'sin observaciones'),
+    (178, 4, 5, 1, 1, 1, 1, 1, 'sin observaciones'),
+    (179, 5, 1, 1, 2, 2, 2, 2, 'sin observaciones'),
+    (180, 1, 2, 1, 1, 1, 1, 1, 'sin observaciones'),
+    (181, 2, 3, 1, 2, 2, 1, 1, 'sin observaciones'),
+    (182, 3, 4, 1, 1, 1, 2, 2, 'sin observaciones'),
+    (183, 4, 5, 1, 2, 1, 1, 1, 'sin observaciones'),
+    (184, 5, 1, 1, 1, 2, 1, 1, 'sin observaciones'),
+    (185, 1, 2, 1, 1, 1, 1, 2, 'sin observaciones'),
+    (186, 2, 3, 1, 2, 1, 1, 1, 'sin observaciones'),
+    (187, 3, 4, 1, 2, 2, 2, 2, 'sin observaciones'),
+    (188, 4, 5, 1, 1, 1, 1, 1, 'sin observaciones'),
+    (189, 5, 1, 1, 1, 1, 1, 2, 'sin observaciones'),
+    (190, 1, 2, 1, 2, 2, 1, 1, 'sin observaciones'),
+    (191, 2, 3, 1, 1, 1, 1, 1, 'sin observaciones'),
+    (192, 3, 4, 1, 2, 2, 2, 1, 'sin observaciones'),
+    (193, 4, 5, 1, 1, 1, 1, 1, 'sin observaciones'),
+    (194, 5, 1, 1, 1, 1, 1, 1, 'sin observaciones'),
+    (195, 1, 2, 1, 2, 2, 2, 2, 'sin observaciones'),
+    (196, 2, 3, 1, 1, 1, 1, 1, 'sin observaciones'),
+    (197, 3, 4, 1, 2, 2, 1, 1, 'sin observaciones');
 
-
--- Insert de datos de consumo de platos, bebidas y postres en tabla detalle_comandas.
-INSERT INTO detalle_comandas (id_comandas, id_platos, id_bebidas, id_postres, cantidad_platos, cantidad_bebidas, cantidad_postres)
-VALUES
-    -- Comanda 15
-    ('15', '1', '2', '2', '2', '1', '0'), -- 2 platos, 1 bebida, 0 postres
-    -- Comanda 20postresdetalle_comandas
-    ('20', '2', '3', '1', '3', '2', '0'), -- 3 platos, 2 bebidas, 0 postres
-    -- Comanda 35
-    ('35', '3', '4', '2', '1', '1', '0'), -- 1 plato, 1 bebida, 0 postres
-    -- Comanda 40
-    ('40', '4', '5', '1', '4', '2', '1'), -- 4 platos, 2 bebidas, 1 postre
-    -- Comanda 52
-    ('52', '5', '1', '1', '2', '1', '0'), -- 2 platos, 1 bebida, 0 postres
-    -- Comanda 60
-    ('60', '1', '2', '1', '2', '1', '0'), -- 2 platos, 1 bebida, 0 postres
-    -- Comanda 72
-    ('72', '2', '3', '1', '3', '2', '0'), -- 3 platos, 2 bebidas, 0 postres
-    -- Comanda 83
-    ('83', '3', '4', '2', '1', '1', '0'), -- 1 plato, 1 bebida, 0 postres
-    -- Comanda 94
-    ('94', '4', '5', '1', '4', '2', '1'), -- 4 platos, 2 bebidas, 1 postre
-    -- Comanda 105
-    ('105', '5', '1', '2', '2', '1', '0'), -- 2 platos, 1 bebida, 0 postres
-    -- Comanda 116
-    ('116', '1', '2', '2', '2', '1', '0'), -- 2 platos, 1 bebida, 0 postres
-    -- Comanda 127
-    ('127', '2', '3', '1', '3', '2', '0'), -- 3 platos, 2 bebidas, 0 postres
-    -- Comanda 138
-    ('138', '3', '4', '2', '1', '1', '0'), -- 1 plato, 1 bebida, 0 postres
-    -- Comanda 149
-    ('149', '4', '5', '1', '4', '2', '1'), -- 4 platos, 2 bebidas, 1 postre
-    -- Comanda 160
-    ('160', '5', '1', '2', '2', '1', '0'); -- 2 platos, 1 bebida, 0 postres
 
 
 -- Insert de los datos de la tabla 'facturas_clientes'
-INSERT INTO facturas_clientes (monto_total, id_clientes, id_comandas, pagada)
+INSERT INTO facturas_clientes (id_facturas, monto_total, fecha, id_clientes, id_comandas, pagada)
 VALUES 
-    (150, 1, 15, 1),
-    (180, 2, 20, 1),
-    (90, 3, 35, 1),
-    (200, 4, 40, 0),
-    (160, 5, 52, 1),
-    (150, 6, 60, 1),
-    (180, 7, 72, 1),
-    (90, 8, 83, 1),
-    (200, 9, 94, 0),
-    (160, 10, 105, 1),
-    (150, 11, 116, 1),
-    (180, 12, 127, 1),
-    (90, 13, 138, 1),
-    (200, 14, 149, 0),
-    (160, 15, 160, 1);
+    (1, 370, '2024-05-17', 17, 15, 1),
+    (2, 320, '2024-05-20', 8, 20, 1),
+    (3, 280, '2024-05-25', 24, 35, 1),
+    (4, 400, '2024-06-01', 3, 40, 0),
+    (5, 310, '2024-06-05', 27, 52, 1),
+    (6, 380, '2024-06-10', 10, 60, 1),
+    (7, 290, '2024-06-15', 12, 72, 1),
+    (8, 340, '2024-06-20', 22, 83, 1),
+    (9, 260, '2024-06-25', 29, 94, 0),
+    (10, 370, '2024-06-30', 18, 105, 1),
+    (11, 320, '2024-07-05', 31, 116, 1),
+    (12, 280, '2024-07-10', 1, 127, 1),
+    (13, 400, '2024-07-15', 5, 138, 1),
+    (14, 310, '2024-07-20', 15, 149, 0),
+    (15, 380, '2024-07-25', 6, 160, 1),
+    (16, 350, '2024-03-01', 9, 170, 1),
+    (17, 300, '2024-03-02', 19, 171, 1),
+    (18, 280, '2024-03-03', 4, 172, 1),
+    (19, 390, '2024-03-04', 7, 173, 0),
+    (20, 320, '2024-03-05', 13, 174, 1),
+    (21, 380, '2024-03-06', 21, 175, 1),
+    (22, 310, '2024-03-07', 26, 176, 1),
+    (23, 370, '2024-03-08', 11, 177, 1),
+    (24, 290, '2024-03-08', 14, 178, 0),
+    (25, 360, '2024-03-08', 25, 179, 1),
+    (26, 330, '2024-03-08', 28, 180, 1),
+    (27, 340, '2024-03-08', 2, 181, 1),
+    (28, 320, '2024-03-08', 20, 182, 1),
+    (29, 280, '2024-03-08', 30, 183, 0),
+    (30, 300, '2024-03-08', 23, 184, 1),
+    (31, 370, '2024-03-08', 16, 185, 1),
+    (32, 320, '2024-03-08', 32, 186, 1),
+    (33, 280, '2024-03-08', 33, 187, 1),
+    (34, 390, '2024-03-09', 34, 188, 0),
+    (35, 330, '2024-03-10', 35, 189, 1),
+    (36, 310, '2024-03-11', 36, 190, 1),
+    (37, 350, '2024-03-12', 37, 191, 1),
+    (38, 290, '2024-03-13', 38, 192, 1),
+    (39, 360, '2024-03-14', 39, 193, 0),
+    (40, 380, '2024-03-15', 40, 194, 1),
+    (41, 320, '2024-03-16', 41, 195, 1),
+    (42, 330, '2024-03-17', 42, 196, 1),
+    (43, 370, '2024-03-18', 43, 197, 1);
+
 
 -- Insert de los datos de la tabla "detalle_facturas_clientes"
 
 INSERT INTO detalle_facturas_clientes (id_clientes, id_facturas, id_detalle_comandas)
-VALUES 
-    (1, 1, 1),
-    (2, 2, 2),
-    (3, 3, 3),
-    (4, 4, 4),
-    (5, 5, 5),
-    (6, 6, 6),
-    (7, 7, 7),
-    (8, 8, 8),
-    (9, 9, 9),
-    (10, 10, 10),
-    (11, 11, 11),
-    (12, 12, 12),
-    (13, 13, 13),
-    (14, 14, 14),
-    (15, 15, 15);
+ VALUES 
+     (17, 1, 1),
+     (8, 2, 2),
+     (24, 3, 3),
+     (3, 4, 4),
+     (27, 5, 5),
+     (10, 6, 6),
+     (12, 7, 7),
+     (22, 8, 8),
+     (29, 9, 9),
+     (18, 10, 10),
+     (31, 11, 11),
+     (1, 12, 12),
+     (5, 13, 13),
+     (15, 14, 14),
+     (6, 15, 15),
+     (9, 16, 16),
+     (19, 17, 17),
+     (4, 18, 18),
+     (7, 19, 19),
+     (13, 20, 20),
+     (21, 21, 21),
+     (26, 22, 22),
+     (11, 23, 23),
+     (14, 24, 24),
+     (25, 25, 25),
+     (28, 26, 26),
+     (2, 27, 27),
+     (20, 28, 28),
+     (30, 29, 29),
+     (23, 30, 30),
+     (16, 31, 31),
+     (32, 32, 32),
+     (33, 33, 33),
+     (34, 34, 34),
+     (35, 35, 35),
+     (36, 36, 36),
+     (37, 37, 37),
+     (38, 38, 38),
+     (39, 39, 39),
+     (40, 40, 40),
+     (41, 41, 41),
+     (42, 42, 42),
+     (43, 43, 43);
+
+
 
 
 -- Insert de los datos de la tabla "encuentas_satisfaccion" 
 
-INSERT INTO encuestas_satisfaccion (comentarios, fecha, hora, id_clientes)
-VALUES
-    ('Excelente servicio y comida deliciosa.', '2024-05-17', '14:30:00', 1),
-    ('Muy buena atención, pero la comida tardó un poco.', '2024-05-20', '12:00:00', 2),
-    ('Todo estuvo perfecto, volveré pronto.', '2024-05-25', '09:00:00', 3),
-    ('El postre no estaba muy fresco.', '2024-06-01', '08:45:00', 4),
-    ('El lugar es muy acogedor y la comida excelente.', '2024-06-05', '13:00:00', 5),
-    ('La bebida estaba muy dulce.', '2024-06-10', '11:00:00', 6),
-    ('Buen ambiente, pero la comida estaba fría.', '2024-06-15', '14:00:00', 7),
-    ('Servicio rápido y eficiente.', '2024-06-20', '15:00:00', 8),
-    ('La sopa estaba demasiado salada.', '2024-06-25', '16:30:00', 9),
-    ('Todo estuvo bien, pero el servicio fue lento.', '2024-06-30', '18:00:00', 10),
-    ('La música estaba muy alta.', '2024-07-05', '10:00:00', 11),
-    ('El personal fue muy amable y atento.', '2024-07-10', '12:00:00', 12),
-    ('Buena relación calidad-precio.', '2024-07-15', '19:00:00', 13),
-    ('El lugar estaba limpio y ordenado.', '2024-07-20', '21:00:00', 14),
-    ('La comida estaba deliciosa, volveremos.', '2024-07-25', '09:00:00', 15);
-    
+INSERT INTO encuestas_satisfaccion (id_encuestas, comentarios, fecha, hora, id_clientes)
+VALUES 
+    (1, 'Excelente servicio', '2024-05-17', '13:00:00', 17),
+    (2, 'Buena comida, ambiente agradable', '2024-05-20', '12:45:00', 8),
+    (3, 'Tiempo de espera un poco largo', '2024-05-25', '08:30:00', 24),
+    (4, 'La comida no estaba tan buena como esperaba', '2024-06-01', '09:00:00', 3),
+    (5, 'Personal amable y atento', '2024-06-05', '12:45:00', 27),
+    (6, 'Comida deliciosa, definitivamente volveré', '2024-06-10', '13:15:00', 10),
+    (7, 'Servicio rápido y eficiente', '2024-06-15', '11:30:00', 12),
+    (8, 'Me encantó la selección de platos', '2024-06-20', '14:00:00', 22),
+    (9, 'Pedí un plato que estaba demasiado salado', '2024-06-25', '10:30:00', 29),
+    (10, 'La ensalada estaba fresca y deliciosa', '2024-06-30', '12:00:00', 18),
+    (11, 'El queso extra en mi plato hizo la diferencia', '2024-07-05', '13:45:00', 31),
+    (12, 'La comida estaba un poco sosa, necesita más sabor', '2024-07-10', '10:30:00', 1),
+    (13, 'Excelente lugar para compartir con amigos', '2024-07-15', '15:30:00', 5),
+    (14, 'Me encanta que ofrezcan opciones sin gluten', '2024-07-20', '19:00:00', 15),
+    (15, 'La comida estuvo bien, pero el servicio fue lento', '2024-07-25', '20:30:00', 6),
+    (16, 'Todo estuvo delicioso, pero un poco caro', '2024-03-01', '12:15:00', 9),
+    (17, 'El ambiente del restaurante es acogedor', '2024-03-02', '14:00:00', 19),
+    (18, 'La atención del personal fue excelente', '2024-03-03', '16:30:00', 4),
+    (19, 'La comida llegó fría, deberían mejorar eso', '2024-03-04', '11:45:00', 7),
+    (20, 'El postre estaba increíble', '2024-03-05', '18:00:00', 13),
+    (21, 'Excelente variedad de bebidas', '2024-03-06', '20:00:00', 21),
+    (22, 'El plato principal tardó mucho en llegar', '2024-03-07', '09:45:00', 26),
+    (23, 'Pedí una bebida que no estaba disponible', '2024-03-08', '11:15:00', 11),
+    (24, 'La comida estaba deliciosa, pero la porción era pequeña', '2024-03-08', '12:30:00', 14),
+    (25, 'El ambiente del restaurante es muy relajante', '2024-03-08', '14:45:00', 25),
+    (26, 'Excelente atención al cliente', '2024-03-08', '16:00:00', 28),
+    (27, 'Me encantó la presentación de los platos', '2024-03-08', '17:30:00', 2),
+    (28, 'El postre estaba un poco seco', '2024-03-08', '19:45:00', 20),
+    (29, 'La comida tardó mucho y estaba fría al llegar', '2024-03-08', '21:00:00', 30),
+    (30, 'Buena comida, pero el lugar estaba lleno y ruidoso', '2024-03-09', '13:15:00', 23),
+    (31, 'El servicio fue excelente, muy atentos', '2024-03-10', '15:30:00', 34),
+    (32, 'La música ambiental era perfecta', '2024-03-11', '17:45:00', 35),
+    (33, 'Pedí un plato vegetariano y me trajeron uno con carne', '2024-03-12', '19:30:00', 36),
+    (34, 'Me encantó el postre, fue el mejor que he probado', '2024-03-13', '10:00:00', 37),
+    (35, 'El servicio fue rápido y eficiente', '2024-03-14', '12:15:00', 38),
+    (36, 'La comida estaba demasiado salada', '2024-03-15', '14:30:00', 39),
+    (37, 'Los precios son bastante altos para la calidad de la comida', '2024-03-16', '16:45:00', 40),
+    (38, 'Ambiente tranquilo, ideal para una cena romántica', '2024-03-17', '18:00:00', 41),
+    (39, 'Pedí un plato que estaba en el menú y ya no lo tenían', '2024-03-18', '20:15:00', 42),
+    (40, 'La comida estaba bien, pero la presentación era descuidada', '2024-03-19', '11:30:00', 43);
+
 
 
 -- Insert de datos de la tabla proveedores
@@ -725,90 +862,142 @@ INSERT INTO empleados_despedidos (nombre, apellido, fecha_contratacion, fecha_de
 VALUES ('Luis', 'Rodríguez', '2023-05-25', '2024-05-22', 'Abandono del trabajo sin justificación', 'Bachero', 9);
 
 
--- Insert de los datos de la tabla "ventas"
-
+-- INSERT PARA VENTAS
 INSERT INTO ventas (id_ventas, fecha)
 VALUES
-    (16, '2024-05-23'), -- Comanda del 23 de mayo de 2024
-    (17, '2024-05-24'), -- Comanda del 24 de mayo de 2024
-    (18, '2024-05-25'), -- Comanda del 25 de mayo de 2024
-    (19, '2024-05-26'), -- Comanda del 26 de mayo de 2024
-    (20, '2024-05-27'), -- Comanda del 27 de mayo de 2024
-    (21, '2024-05-28'), -- Comanda del 28 de mayo de 2024
-    (22, '2024-05-29'), -- Comanda del 29 de mayo de 2024
-    (23, '2024-05-30'), -- Comanda del 30 de mayo de 2024
-    (24, '2024-05-31'), -- Comanda del 31 de mayo de 2024
-    (25, '2024-06-01'), -- Comanda del 1 de junio de 2024
-    (26, '2024-06-02'), -- Comanda del 2 de junio de 2024
-    (27, '2024-06-03'), -- Comanda del 3 de junio de 2024
-    (28, '2024-06-04'), -- Comanda del 4 de junio de 2024
-    (29, '2024-06-05'), -- Comanda del 5 de junio de 2024
-    (30, '2024-06-06'); -- Comanda del 6 de junio de 2024
+    (15, '2024-05-17'),
+    (20, '2024-05-20'),
+    (35, '2024-05-25'),
+    (40, '2024-06-01'),
+    (52, '2024-06-05'),
+    (60, '2024-06-10'),
+    (72, '2024-06-15'),
+    (83, '2024-06-20'),
+    (94, '2024-06-25'),
+    (105, '2024-06-30'),
+    (116, '2024-07-05'),
+    (127, '2024-07-10'),
+    (138, '2024-07-15'),
+    (149, '2024-07-20'),
+    (160, '2024-07-25'),
+    (170, '2024-03-01'),
+    (171, '2024-03-02'),
+    (172, '2024-03-03'),
+    (173, '2024-03-04'),
+    (174, '2024-03-05'),
+    (175, '2024-03-06'),
+    (176, '2024-03-07'),
+    (177, '2024-03-08'),
+    (178, '2024-03-09'),
+    (179, '2024-03-10'),
+    (180, '2024-03-11'),
+    (181, '2024-03-12'),
+    (182, '2024-03-13'),
+    (183, '2024-03-14'),
+    (184, '2024-03-15'),
+    (185, '2024-03-16'),
+    (186, '2024-03-17'),
+    (187, '2024-03-18'),
+    (188, '2024-03-19'),
+    (189, '2024-03-20'),
+    (190, '2024-03-21'),
+    (191, '2024-03-22'),
+    (192, '2024-03-23'),
+    (193, '2024-03-24'),
+    (194, '2024-03-25'),
+    (195, '2024-03-26'),
+    (196, '2024-03-27'),
+    (197, '2024-03-28');
+
 
 -- Insert de los datos de la tabla "detalle_ventas"
 
-INSERT INTO detalle_ventas (id_ventas, id_platos, cantidad)
-VALUES
-    -- Comanda 16
-    (16, 1, 2), -- Gazpacho (2)
-    (16, 2, 1), -- Taco Filet (1)
-    -- Comanda 17
-    (17, 2, 3), -- Taco Filet (3)
-    (17, 3, 2), -- Nemesis (2)
-    -- Comanda 18
-    (18, 3, 1), -- Nemesis (1)
-    (18, 4, 1), -- Bebida (1)
-    -- Comanda 19
-    (19, 4, 4), -- Bebida (4)
-    (19, 5, 2), -- Postre (2)
-    -- Comanda 20
-    (20, 5, 2), -- Postre (2)
-    (20, 1, 2), -- Gazpacho (2)
-    -- Comanda 21
-    (21, 1, 2), -- Gazpacho (2)
-    (21, 2, 1), -- Taco Filet (1)
-    -- Comanda 22
-    (22, 2, 3), -- Taco Filet (3)
-    (22, 3, 2), -- Nemesis (2)
-    -- Comanda 23
-    (23, 3, 1), -- Nemesis (1)
-    (23, 4, 1), -- Bebida (1)
-    -- Comanda 24
-    (24, 4, 4), -- Bebida (4)
-    (24, 5, 2), -- Postre (2)
-    -- Comanda 25
-    (25, 5, 2), -- Postre (2)
-    (25, 1, 2), -- Gazpacho (2)
-    -- Comanda 26
-    (26, 1, 2), -- Gazpacho (2)
-    (26, 2, 1), -- Taco Filet (1)
-    -- Comanda 27
-    (27, 2, 3), -- Taco Filet (3)
-    (27, 3, 2), -- Nemesis (2)
-    -- Comanda 28
-    (28, 3, 1), -- Nemesis (1)
-    (28, 4, 1), -- Bebida (1)
-    -- Comanda 29
-    (29, 4, 4), -- Bebida (4)
-    (29, 5, 2), -- Postre (2)
-    -- Comanda 30
-    (30, 5, 2), -- Postre (2)
-    (30, 1, 2); -- Gazpacho (2)
+-- INSERT CORREGIDO PARA DETALLE_VENTAS
+INSERT INTO detalle_ventas (id_ventas, id_platos, id_bebidas, id_menu, id_postres, cantidad_platos_vendidos, cantidad_bebidas_vendidas, cantidad_postres_vendidos, cantidad_menu_pasos_vendidos) VALUES
+  (15, 1, 1, 2, 1, 2, 2, 1, 2),
+  (20, 2, 2, 1, 2, 1, 1, 1, 2),
+  (35, 3, 3, 1, 2, 1, 1, 1, 2),
+  (40, 4, 4, 1, 1, 2, 2, 1, 1),
+  (52, 5, 5, 1, 1, 1, 1, 2, 2),
+  (60, 1, 2, 1, 2, 2, 2, 1, 2),
+  (72, 2, 3, 1, 1, 1, 1, 2, 1),
+  (83, 3, 4, 1, 2, 2, 2, 1, 2),
+  (94, 4, 5, 1, 1, 1, 1, 1, 1),
+  (105, 5, 1, 1, 2, 1, 2, 2, 1),
+  (116, 1, 2, 2, 1, 2, 1, 1, 2),
+  (127, 2, 3, 1, 2, 1, 1, 2, 1),
+  (138, 3, 4, 1, 1, 1, 1, 1, 1),
+  (149, 4, 5, 1, 2, 2, 2, 2, 1),
+  (160, 5, 1, 1, 1, 1, 1, 1, 1),
+  (170, 1, 2, 1, 2, 2, 2, 2, 2),
+  (171, 2, 3, 1, 1, 1, 1, 1, 2),
+  (172, 3, 4, 1, 2, 1, 2, 2, 2),
+  (173, 4, 5, 1, 1, 2, 1, 1, 2),
+  (174, 5, 1, 1, 2, 1, 1, 2, 2),
+  (175, 1, 2, 1, 1, 1, 1, 1, 2),
+  (176, 2, 3, 1, 2, 2, 2, 1, 2),
+  (177, 3, 4, 1, 1, 1, 1, 1, 2),
+  (178, 4, 5, 1, 1, 1, 1, 1, 2),
+  (179, 5, 1, 1, 2, 2, 2, 2, 2),
+  (180, 1, 2, 1, 1, 1, 1, 1, 2),
+  (181, 2, 3, 1, 2, 2, 1, 1, 2),
+  (182, 3, 4, 1, 1, 1, 2, 2, 2),
+  (183, 4, 5, 1, 2, 1, 1, 1, 2),
+  (184, 5, 1, 1, 1, 2, 1, 1, 2),
+  (185, 1, 2, 1, 1, 1, 1, 2, 2),
+  (186, 2, 3, 1, 2, 1, 1, 1, 2),
+  (187, 3, 4, 1, 2, 2, 2, 2, 2),
+  (188, 4, 5, 1, 1, 1, 1, 1, 2),
+  (189, 5, 1, 1, 1, 1, 1, 2, 2),
+  (190, 1, 2, 1, 2, 2, 1, 1, 2),
+  (191, 2, 3, 1, 1, 1, 1, 1, 2),
+  (192, 3, 4, 1, 2, 2, 2, 1, 2),
+  (193, 4, 5, 1, 1, 1, 1, 1, 2),
+  (194, 5, 1, 1, 1, 1, 1, 1, 2),
+  (195, 1, 2, 1, 2, 2, 2, 2, 2),
+  (196, 2, 3, 1, 1, 1, 1, 1, 2),
+  (197, 3, 4, 1, 2, 2, 1, 1, 2);
 
 
 
--- creamos una vista que nos permita ver las resvar del día, hechas por los clientes. 
 
-CREATE VIEW vista_reservas_diarias AS
-SELECT r.id_reservas, r.hora, r.fecha, r.cantidad_pax, c.nombre AS nombre_cliente, c.apellido AS apellido_cliente
-FROM reservas r
-JOIN clientes c ON r.id_clientes = c.id_clientes
-WHERE r.fecha = CURDATE()
-GROUP BY r.id_reservas, r.hora, r.fecha, r.cantidad_pax, c.nombre, c.apellido;
 
-SELECT * FROM vista_reservas_diarias LIMIT 0, 1000;
 
->>>>>>> db72259acbfc7b36236e82a167768894ceb36e53
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- -------- CREACIÓN DE VISTAS, FUNCIONES, TRIGGERS Y STORED PROCEDURES -------- -- 
+-- ----------------------------------------------------------------------------- --
+
+
+
+-- creamos una vista que nos permita ver las ventas del día.
+
+DROP VIEW IF EXISTS vista_ventas_diarias;
+CREATE OR REPLACE VIEW vista_ventas_diarias AS
+SELECT 
+    fecha, 
+    COUNT(id_ventas) AS total_ventas
+FROM 
+    ventas
+GROUP BY 
+    fecha
+ORDER BY 
+    fecha;
+
+
+SELECT * FROM vista_ventas_diarias;
 
 -- creamos una vista que nos de el estado de las mesas. 
 
@@ -841,25 +1030,6 @@ WHERE f.pagada = 0;
 SELECT * FROM vista_facturas_pendientes;
 
 
-<<<<<<< HEAD
-=======
--- creamos una vista para las ventas diarias.
-
-CREATE VIEW vista_ventas_diarias AS
-SELECT
-    v.fecha AS fecha_venta,
-    SUM(d.cantidad * (p.precio + b.precio + m.precio)) AS total_ventas
-FROM ventas v
-JOIN detalle_ventas d ON v.id_ventas = d.id_ventas
-JOIN platos p ON d.id_platos = p.id_platos									-- INSERT DATOS PARA VISTA
-LEFT JOIN bebidas b ON d.id_bebidas = b.id_bebidas
-LEFT JOIN menu m ON d.id_menu = m.id_menu
-WHERE v.fecha = CURDATE()
-GROUP BY v.fecha;
-
-SELECT * FROM vista_ventas_diarias;
-
->>>>>>> db72259acbfc7b36236e82a167768894ceb36e53
 -- creamos una vista que nos diga los empleados por turno.
 
 CREATE VIEW vista_empleados_por_turno AS
@@ -885,7 +1055,7 @@ END //
 
 DELIMITER ;
 -- nos muestra el detalle de comanda con id 105
-CALL ver_detalle_comandas(105);
+CALL ver_detalle_comandas(40);
 
 
 
@@ -905,27 +1075,10 @@ END //
 DELIMITER ;
 
 -- Llamada al procedimiento almacenado
-CALL generar_facturas_clientes(1, @monto_total);
+CALL generar_facturas_clientes(40, @monto_total);
 
 -- Recuperar el valor de monto_total
 SELECT @monto_total;
-
-
--- creamos un trigger para actualizar el estado de las mesas, con las reservas. 
-
-DELIMITER //
-
-CREATE TRIGGER actualizar_estado_mesas
-AFTER INSERT ON reservas
-FOR EACH ROW
-BEGIN
-    UPDATE mesas
-    SET estado_mesas = 'ocupada'
-    WHERE id_mesas = NEW.id_mesas;
-END;
-//
-
-DELIMITER ;
 
 
 -- creamos una funcion para calcular la edad promedio de los clientes 
@@ -970,6 +1123,23 @@ SELECT id_facturas,
        monto_total, 
        calcular_propina(monto_total) AS propina
 FROM facturas_clientes;
+
+
+-- creamos un trigger para actualizar el estado de las mesas, con las reservas. 
+
+DELIMITER //
+
+CREATE TRIGGER actualizar_estado_mesas
+AFTER INSERT ON reservas
+FOR EACH ROW
+BEGIN
+    UPDATE mesas
+    SET estado_mesas = 'ocupada'
+    WHERE id_mesas = NEW.id_mesas;
+END;
+//
+
+DELIMITER ;
 
 
 -- creamos un trigger que bloquea la eliminación de registros de la tabla empleados
