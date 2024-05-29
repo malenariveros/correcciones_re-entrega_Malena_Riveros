@@ -17,7 +17,6 @@ SELECT * FROM detalle_facturas_clientes;
 SELECT * FROM encuestas_satisfaccion;
 
 SELECT * FROM proveedores;
-ESSSSSTO
 
 SELECT * FROM pedidos_proveedores; 
 

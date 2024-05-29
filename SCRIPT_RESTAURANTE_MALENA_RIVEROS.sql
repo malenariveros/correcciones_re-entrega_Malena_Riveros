@@ -1,4 +1,3 @@
-ESSSSSTO
 
 DROP DATABASE if exists copia_restaurante; -- en caso de que la base de datos exista, la elimina
 CREATE DATABASE copia_restaurante; -- crea la base de datos 
